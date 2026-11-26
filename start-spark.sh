@@ -23,6 +23,7 @@ case "${SPARK_ROLE}" in
                 --port="${JUPYTER_PORT:-8888}" \
                 --no-browser \
                 --allow-root \
+                --notebook-dir=/opt/project \
                 --ServerApp.token='' \
                 --ServerApp.password=''
         fi

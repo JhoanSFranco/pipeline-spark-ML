@@ -23,6 +23,7 @@ RUN apt-get update && \
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir \
         pandas \
+        matplotlib \
         lz4==4.3.3 \
         pyspark==4.2.0 --no-cache-dir \
         "jupyterlab>=4.4,<5" \
@@ -54,12 +55,13 @@ ENV PYTHONPATH="${SPARK_HOME}/python:${SPARK_HOME}/python/lib/py4j-src.zip"
 # ============================================================
 RUN mkdir -p \
         /opt/spark-apps \
+        /opt/project \
         /opt/spark-data \
         /opt/spark/logs \
         /tmp/spark-events \
         /opt/spark/conf
 
-WORKDIR /opt/spark-apps
+WORKDIR /opt/project
 
 # ============================================================
 # Ports

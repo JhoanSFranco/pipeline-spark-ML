@@ -23,9 +23,11 @@ services:
       - "8888:8888"      # JupyterLab
 
     volumes:
-      - ./apps:/opt/spark-apps
-      - ./data:/opt/spark-data
+      # Whole repository, same path in every container: notebooks, src/, data/
+      # and outputs/ are visible, and relative paths work on master and workers.
+      - .:/opt/project
       - ./spark-logs:/tmp/spark-events
+    working_dir: /opt/project
 
     environment:
       SPARK_ROLE: master
@@ -62,9 +64,11 @@ services:
       - "9082:8080"
 
     volumes:
-      - ./apps:/opt/spark-apps
-      - ./data:/opt/spark-data
+      # Whole repository, same path in every container: notebooks, src/, data/
+      # and outputs/ are visible, and relative paths work on master and workers.
+      - .:/opt/project
       - ./spark-logs:/tmp/spark-events
+    working_dir: /opt/project
 
     environment:
       SPARK_ROLE: worker
@@ -101,9 +105,11 @@ services:
       - "9083:8080"
 
     volumes:
-      - ./apps:/opt/spark-apps
-      - ./data:/opt/spark-data
+      # Whole repository, same path in every container: notebooks, src/, data/
+      # and outputs/ are visible, and relative paths work on master and workers.
+      - .:/opt/project
       - ./spark-logs:/tmp/spark-events
+    working_dir: /opt/project
 
     environment:
       SPARK_ROLE: worker
@@ -140,9 +146,11 @@ services:
       - "9084:8080"
 
     volumes:
-      - ./apps:/opt/spark-apps
-      - ./data:/opt/spark-data
+      # Whole repository, same path in every container: notebooks, src/, data/
+      # and outputs/ are visible, and relative paths work on master and workers.
+      - .:/opt/project
       - ./spark-logs:/tmp/spark-events
+    working_dir: /opt/project
 
     environment:
       SPARK_ROLE: worker
