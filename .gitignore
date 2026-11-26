@@ -60,5 +60,14 @@ docker-compose.override.yml
 .DS_Store
 Thumbs.db
 
-.zip
+*.zip
 docs/airbnb_paris_project_plan.md
+
+# Data: the raw Inside Airbnb file is too large for GitHub (180 MB > 100 MB limit)
+data/raw/*
+!data/raw/.gitkeep
+
+# Spark local files
+spark-warehouse/
+metastore_db/
+derby.log
