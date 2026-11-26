@@ -24,8 +24,10 @@ ENV/
 **/.ipynb_checkpoints/
 
 # Spark generated event logs and streaming checkpoints
-spark/spark-logs/
-**/spark-logs/
+# Keep the empty spark-logs/ folder in the repo: if it is missing, Docker
+# creates it as root and later `git pull` fails with "Permission denied"
+spark-logs/*
+!spark-logs/.gitkeep
 **/checkpoint_*/
 **/checkpoints/
 **/checkpoint_*/**/*.tmp
