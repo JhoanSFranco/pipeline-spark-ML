@@ -59,7 +59,24 @@ RUN mkdir -p \
         /opt/spark-data \
         /opt/spark/logs \
         /tmp/spark-events \
-        /opt/spark/conf
+        /opt/spark/conf \
+        /opt/spark/work
+
+# ============================================================
+# Utilisateur non-root
+# Compose runs the containers as the host user (HOST_UID:HOST_GID,
+# 1000:1000 by default) so files written into the mounted repository
+# belong to whoever runs the cluster, not to root.
+# ============================================================
+ARG HOST_UID=1000
+ARG HOST_GID=1000
+RUN if ! getent group "${HOST_GID}" >/dev/null; then \
+        groupadd -g "${HOST_GID}" project; \
+    fi && \
+    if ! getent passwd "${HOST_UID}" >/dev/null; then \
+        useradd -m -u "${HOST_UID}" -g "${HOST_GID}" -s /bin/bash project; \
+    fi && \
+    chmod 1777 /opt/spark/logs /opt/spark/work /tmp/spark-events
 
 WORKDIR /opt/project
 

@@ -41,6 +41,9 @@ services:
       JUPYTER_ENABLE: "true"
       JUPYTER_PORT: 8888
 
+    # Run as the host user so files written into the repo are not owned by root
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+
     restart: unless-stopped
 
 
@@ -81,6 +84,9 @@ services:
 
       SPARK_LOCAL_IP: spark-worker-a
       SPARK_WORKER_WEBUI_PORT: 8080
+
+    # Run as the host user so files written into the repo are not owned by root
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
 
     restart: unless-stopped
 
@@ -123,6 +129,9 @@ services:
       SPARK_LOCAL_IP: spark-worker-b
       SPARK_WORKER_WEBUI_PORT: 8080
 
+    # Run as the host user so files written into the repo are not owned by root
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+
     restart: unless-stopped
 
 
@@ -164,6 +173,9 @@ services:
       SPARK_LOCAL_IP: spark-worker-c
       SPARK_WORKER_WEBUI_PORT: 8080
 
+    # Run as the host user so files written into the repo are not owned by root
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+
     restart: unless-stopped
 
 
@@ -193,6 +205,9 @@ services:
       SPARK_HISTORY_OPTS: >-
         -Dspark.history.fs.logDirectory=/tmp/spark-events
         -Dspark.history.ui.port=18080
+
+    # Run as the host user so files written into the repo are not owned by root
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
 
     restart: unless-stopped
 
