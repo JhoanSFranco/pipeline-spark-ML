@@ -73,3 +73,5 @@ data/raw/*
 spark-warehouse/
 metastore_db/
 derby.log
+data/sample/*
+listings_sample.csv
